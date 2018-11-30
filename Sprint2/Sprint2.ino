@@ -19,7 +19,7 @@ Servo ServoBackLeft;
 Servo ServoBackRight;
 boolean StopForever; // Will be used to stop the robot in main loop
 
-const int PIN_SERVO_GRABBER = 1;
+const int PIN_SERVO_GRABBER = 8;
 const int PIN_SERVO_FRONT_RIGHT = 4;
 const int PIN_SERVO_FRONT_LEFT = 5;
 const int PIN_SERVO_BACK_RIGHT = 7;
@@ -63,6 +63,15 @@ void loop()
     case 'x':
        driveBackwards();
        break;
+    case 'i':
+       magnetIn();
+       break;
+    case 'o':
+       magnetOut();
+       break;  
+    case 'p':
+       magnetMiddle();
+       break;
     default:
        break;
   }
@@ -84,6 +93,22 @@ void testServos()
   delay(500);
   stopWheels();
 }
+
+void magnetIn()
+{
+  ServoGrabber.write(180);
+}
+
+void magnetOut()
+{
+  ServoGrabber.write(0);
+}
+
+void magnetMiddle()
+{
+  ServoGrabber.write(90);
+}
+
 
 void turnRight()
 {
