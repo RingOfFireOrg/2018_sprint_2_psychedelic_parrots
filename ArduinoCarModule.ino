@@ -1,3 +1,6 @@
+/**
+ * This is test block comment.
+ */
 // Include the Servo library 
 #include <Servo.h> 
 
