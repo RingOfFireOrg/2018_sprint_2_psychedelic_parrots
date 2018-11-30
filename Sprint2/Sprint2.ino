@@ -13,8 +13,8 @@ boolean StopForever; // Will be used to stop the robot in main loop
 const int PIN_SERVO_GRABBER = 1;
 const int PIN_SERVO_FRONT_RIGHT = 4;
 const int PIN_SERVO_FRONT_LEFT = 5;
-const int PIN_SERVO_BACK_RIGHT = 6;
-const int PIN_SERVO_BACK_LEFT = 7;
+const int PIN_SERVO_BACK_RIGHT = 7;
+const int PIN_SERVO_BACK_LEFT = 6;
 
 void setup()
 {
@@ -32,8 +32,10 @@ void setup()
 
 void loop()
 {
-    testServos();
-    delay(500);
+    driveSpeed(100, 100);
+    delay(1000);
+    stopWheels();
+    delay(1000);
 }
 
 void testServos()
@@ -41,13 +43,14 @@ void testServos()
     ServoBackLeft.write(180);
     delay(500);
     ServoBackLeft.write(90);
-    ServoBackRight.write(180);
+    ServoBackRight.write(0);
     delay(500);
     ServoBackRight.write(90);
     ServoFrontLeft.write(180);
     delay(500);
     ServoFrontLeft.write(90);
-    ServoFrontRight.write(180);
+
+    ServoFrontRight.write(0);
     delay(500);
     stopWheels();
 }
@@ -65,8 +68,8 @@ void stopWheels()
 // This is -100 to 100 with 0 being stopped
 void driveSpeed(int leftMotorSpeed, int rightMotorSpeed)
 {
-    ServoBackLeft.write(map(leftMotorSpeed, -100, 100, 180, 0));
-    ServoBackRight.write(map(rightMotorSpeed, -100, 100, 0, 180));
-    ServoFrontLeft.write(map(leftMotorSpeed, -100, 100, 180, 0));
-    ServoFrontRight.write(map(rightMotorSpeed, -100, 100, 0, 180));
+    ServoBackLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
+    ServoBackRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
+    ServoFrontLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
+    ServoFrontRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
 }
