@@ -27,116 +27,116 @@ const int PIN_SERVO_BACK_LEFT = 6;
 
 void setup()
 {
-  Serial.begin(115200);
-  Serial.println("Interfacing arduino with nodemcu");
-  ds.init();     // setup drive station comms
-  // Attach Servo Pin numbers
-  ServoGrabber.attach(PIN_SERVO_GRABBER);
-  ServoFrontRight.attach(PIN_SERVO_FRONT_RIGHT);
-  ServoFrontLeft.attach(PIN_SERVO_FRONT_LEFT);
-  ServoBackLeft.attach(PIN_SERVO_BACK_LEFT);
-  ServoBackRight.attach(PIN_SERVO_BACK_RIGHT);
+    Serial.begin(115200);
+    Serial.println("Interfacing arduino with nodemcu");
+    ds.init(); // setup drive station comms
+    // Attach Servo Pin numbers
+    ServoGrabber.attach(PIN_SERVO_GRABBER);
+    ServoFrontRight.attach(PIN_SERVO_FRONT_RIGHT);
+    ServoFrontLeft.attach(PIN_SERVO_FRONT_LEFT);
+    ServoBackLeft.attach(PIN_SERVO_BACK_LEFT);
+    ServoBackRight.attach(PIN_SERVO_BACK_RIGHT);
 
-  // Reset the wheels
-  stopWheels();
+    // Reset the wheels
+    stopWheels();
 }
 
 void loop()
 {
-  char input = ds.readInputIfAvailable();
-  switch(input){
+    char input = ds.readInputIfAvailable();
+    switch (input)
+    {
     case 't':
-       testServos();
-       break;
+        testServos();
+        break;
     case 'w':
-       driveFullSpeed();
-       break;
+        driveFullSpeed();
+        break;
     case 'd':
-       turnRight();
-       break;
+        turnRight();
+        break;
     case 'a':
-       turnLeft();
-       break;
+        turnLeft();
+        break;
     case 's':
-       stopWheels();
-       break;
+        stopWheels();
+        break;
     case 'x':
-       driveBackwards();
-       break;
+        driveBackwards();
+        break;
     case 'i':
-       magnetIn();
-       break;
+        magnetIn();
+        break;
     case 'o':
-       magnetOut();
-       break;  
+        magnetOut();
+        break;
     case 'p':
-       magnetMiddle();
-       break;
+        magnetMiddle();
+        break;
     default:
-       break;
-  }
+        break;
+    }
 }
 
 void testServos()
 {
-  ServoBackLeft.write(180);
-  delay(500);
-  ServoBackLeft.write(90);
-  ServoBackRight.write(0);
-  delay(500);
-  ServoBackRight.write(90);
-  ServoFrontLeft.write(180);
-  delay(500);
-  ServoFrontLeft.write(90);
+    ServoBackLeft.write(180);
+    delay(500);
+    ServoBackLeft.write(90);
+    ServoBackRight.write(0);
+    delay(500);
+    ServoBackRight.write(90);
+    ServoFrontLeft.write(180);
+    delay(500);
+    ServoFrontLeft.write(90);
 
-  ServoFrontRight.write(0);
-  delay(500);
-  stopWheels();
+    ServoFrontRight.write(0);
+    delay(500);
+    stopWheels();
 }
 
 void magnetIn()
 {
-  ServoGrabber.write(180);
+    ServoGrabber.write(180);
 }
 
 void magnetOut()
 {
-  ServoGrabber.write(0);
+    ServoGrabber.write(0);
 }
 
 void magnetMiddle()
 {
-  ServoGrabber.write(90);
+    ServoGrabber.write(90);
 }
-
 
 void turnRight()
 {
-  driveSpeed(100,-100);
+    driveSpeed(100, -100);
 }
 void turnLeft()
 {
-  driveSpeed(-100, 100);
+    driveSpeed(-100, 100);
 }
 void driveBackwards()
 {
-  driveSpeed(-100,-100);
+    driveSpeed(-100, -100);
 }
 void driveFullSpeed()
 {
-  driveSpeed(100, 100);
+    driveSpeed(100, 100);
 }
 
 void stopWheels()
 {
-  driveSpeed(0, 0);
+    driveSpeed(0, 0);
 }
 
 // This is -100 to 100 with 0 being stopped
 void driveSpeed(int leftMotorSpeed, int rightMotorSpeed)
 {
-  ServoBackLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
-  ServoBackRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
-  ServoFrontLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
-  ServoFrontRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
+    ServoBackLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
+    ServoBackRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
+    ServoFrontLeft.write(map(leftMotorSpeed, -100, 100, 0, 180));
+    ServoFrontRight.write(map(rightMotorSpeed, -100, 100, 180, 0));
 }
