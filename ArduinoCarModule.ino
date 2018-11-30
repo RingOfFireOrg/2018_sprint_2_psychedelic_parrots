@@ -1,16 +1,17 @@
-// Include the Servo library 
-#include <Servo.h> 
+// Include the Servo library
+#include <Servo.h>
 
-// Declare the variables 
+// Declare the variables
 
- Servo ServoGrabber;
- Servo ServoFrontRight; 
- Servo ServoFrontLeft;
- Servo ServoBackLeft;
- Servo ServoBackRight;
- boolean StopForever; // Will be used to stop the robot in main loop
+Servo ServoGrabber;
+Servo ServoFrontRight;
+Servo ServoFrontLeft;
+Servo ServoBackLeft;
+Servo ServoBackRight;
+boolean StopForever; // Will be used to stop the robot in main loop
 
-void setup() { 
+void setup()
+{
     // Setup the environment
     StopForever = false;
     // Attach Servo Pin numbers
@@ -27,7 +28,8 @@ void setup() {
     ServoFrontRight.write(90);
 }
 
-void Stop(){
+void Stop()
+{
     // Stop wheels from turning
     ServoBackRight.write(90);
     ServoBackLeft.write(90);
@@ -35,25 +37,28 @@ void Stop(){
     ServoFrontRight.write(90);
 }
 
-void Forward(){
+void Forward()
+{
     // Stop wheels from turning
     ServoBackRight.write(120);
     ServoFrontRight.write(120);
     ServoBackLeft.write(90);
     ServoFrontLeft.write(90);
-}  
+}
 
-void loop(){ 
+void loop()
+{
     if (StopForever == false)
     {
-     Forward();
-     delay(5000);
-     //ServoRight.write(0);
-     //delay(1000);
-     //ServoRight.write(45);
-     StopForever = true;
+        Forward();
+        delay(5000);
+        //ServoRight.write(0);
+        //delay(1000);
+        //ServoRight.write(45);
+        StopForever = true;
     }
-    else{
+    else
+    {
         Stop();
     }
 }
