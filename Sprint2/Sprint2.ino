@@ -19,11 +19,11 @@ Servo ServoBackLeft;
 Servo ServoBackRight;
 boolean StopForever; // Will be used to stop the robot in main loop
 
-const int PIN_SERVO_GRABBER = 8;
+const int PIN_SERVO_GRABBER = 5;
 const int PIN_SERVO_FRONT_RIGHT = 4;
-const int PIN_SERVO_FRONT_LEFT = 5;
-const int PIN_SERVO_BACK_RIGHT = 7;
-const int PIN_SERVO_BACK_LEFT = 6;
+const int PIN_SERVO_FRONT_LEFT = 7;
+const int PIN_SERVO_BACK_RIGHT = 6;
+const int PIN_SERVO_BACK_LEFT = 8;
 
 void setup()
 {
