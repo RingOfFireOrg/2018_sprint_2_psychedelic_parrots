@@ -44,7 +44,7 @@ void setup()
 void loop()
 {
     char input = ds.readInputIfAvailable();
-    switch (input)
+    switch (tolower(input))
     {
     case 't':
         testServos();
